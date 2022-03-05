@@ -1,12 +1,11 @@
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './app/layout/styles.css';
+import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 
 
-// Reaact Strict mode enforme any code that is deprated or outdated into React17.
-// This will work with all React code, 
-// but may interfer our third party with one o more outdated components
+// React Strict mode enforce any code that is deprated or outdated into React17 version.
+// This will work with all React code, but may interfer our third party with one o more outdated components. So let's remove for now.
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <App />
