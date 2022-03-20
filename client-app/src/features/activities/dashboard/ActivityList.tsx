@@ -1,44 +1,27 @@
 import { observer } from "mobx-react-lite";
-import { SyntheticEvent, useState } from "react";
-import { Button, Item, Label, Segment } from "semantic-ui-react";
+import { Fragment } from "react";
+import { Header } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
+import ActivityListItem from "./ActivityListItem";
 
 
 export default observer(function ActivityList() {
-    const [target, setTarget] = useState('');
-    const { activitiesByDate, selectActivity, loading, deleteActivity } = useStore().activityStore;
+    const { groupedActivities } = useStore().activityStore;
 
-    function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string){
-        setTarget(e.currentTarget.name);
-        deleteActivity(id);
-    }
+    
     return (
-        <Segment>
-            <Item.Group divided>
-                {activitiesByDate.map(activity => (
-                    <Item key={activity.id}>
-                        <Item.Content>
-                            <Item.Header as='a'>{activity.title}</Item.Header>
-                            <Item.Meta>{activity.date}</Item.Meta>
-                            <Item.Description>
-                                <div>{activity.description}</div>
-                                <div>{activity.city}, {activity.venue}</div>
-                            </Item.Description>
-                            <Item.Extra>
-                                <Button onClick={() => selectActivity(activity.id)} floated="right" content='View' color='blue' />
-                                <Button
-                                    name={activity.id}
-                                    loading={activity.id === target && loading} 
-                                    onClick={(e) => handleActivityDelete(e, activity.id)} 
-                                    floated="right" 
-                                    content='Delete' 
-                                    color='red' />
-                                <Label basic content={activity.category}/>
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>                    
-                ))}
-            </Item.Group>
-        </Segment>
+        <> {
+            groupedActivities.map(([group, activities]) => (
+                <Fragment key={group}>
+                    <Header sub color='teal'>
+                        {group}
+                    </Header>
+                    {activities.map(activity => (
+                        <ActivityListItem  key={activity.id} activity={activity}/>
+                    ))}
+                </Fragment>
+            ))
+            }
+        </>       
     );
 })
