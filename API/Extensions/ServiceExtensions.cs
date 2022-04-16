@@ -1,5 +1,7 @@
 using Application.Activities;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Persistence;
@@ -10,7 +12,11 @@ namespace API.ServiceExtensions
     {
         public static void AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers().AddFluentValidation(config => {
+            services.AddControllers(opt => {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                opt.Filters.Add(new AuthorizeFilter(policy));
+            })
+            .AddFluentValidation(config => {
                 config.RegisterValidatorsFromAssemblyContaining<Create>();
             });            
             services.AddSwaggerGen(c =>
