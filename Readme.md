@@ -30,11 +30,12 @@ This app was created following Clean Architecture - CQRS and MediaR.
 &nbsp; [![Entity Framework](https://img.shields.io/badge/ORM-Entity%20Framework%20Core-blueviolet)](https://docs.microsoft.com/en-us/ef/core/)
 &nbsp; [![Migrations](https://img.shields.io/badge/EF%20Migrations-Code%20First-orange)](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
 &nbsp; ![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey)
- 
-## 📍 Useful .NET CLI Commands
+
+
+📍 Useful .NET CLI Commands
 <br/>
 :speaker: .NET CLI REFERENCE: https://docs.microsoft.com/en-us/ef/core/cli/dotnet
-<br/>
+<br/>&nbsp;
 :computer: Info
 ```dotnetcli
 dotnet --info
@@ -88,7 +89,8 @@ The files will be deleted and regerenated everytime we build and run the applica
 ```dotnetcli
 dotnet watch run
 ```
-## 📍 Useful .NET Migrations Commands
+
+📍 Useful .NET Migrations Commands
 <br>
 Useful notes about package dependencies and cli commands.
 <br>
